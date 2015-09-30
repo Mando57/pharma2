@@ -243,12 +243,25 @@ class PdoLafleur
 		{
 			$LoginConfirmation=true;
 			$_SESSION['id']=$logged['id'];
+			$_SESSION['logged']=true;
 		}else
 		{
 			$LoginConfirmation=false;
 		}
 		return $LoginConfirmation;
 
+	}
+	public function createDemande($date,$debut,$fin,$remarque)
+	{
+		@$date = date("Y-m-d", strtotime($date));
+		
+		$id=$_SESSION['id'];
+
+		$insert=("insert into demande (date,debut,fin,remarque,idPharma) values ('$date','$debut','$fin','$remarque',$id) ");
+		$res=PdoLafleur::$monPdo->exec($insert);
+		var_dump($insert);
+
+		return $res;
 	}
 	
 }

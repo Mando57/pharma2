@@ -15,13 +15,8 @@ switch($uc)
 {
 	case 'accueil':
 		{include("vues/v_accueil.php");break;}
-	/*case 'voirProduits' :
-		{include("controleurs/c_voirProduits.php");break;}
-	case 'gererPanier' :
-		{ include("controleurs/c_gestionPanier.php");break; }
-	case 'administrer' :
-	  { include("controleurs/c_gestionBackoff.php");break;  }*/
-	 
+	case 'reserv' :
+		{include("controleurs/c_reservation.php");break;}
 ///// ajout du controle/////
 	 case 'connec':
 	 {

@@ -25,14 +25,13 @@ switch($action)
 					$message = "La Connection a échoué";
 					include ("vues/v_message.php");
 				}else{
-					$_SESSION['clientLogin']=true;
 					$message = "La Connection a réussit";
 					include ("vues/v_message.php");
 				}break;
 
 			}
 		}
-		if(!isset($_SESSION['clientLogin']))
+		if(!isset($_SESSION['logged']))
 		{
 			include('vues/v_login.php');
 		}
