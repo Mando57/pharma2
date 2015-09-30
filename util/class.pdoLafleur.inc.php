@@ -17,7 +17,7 @@
 class PdoLafleur
 {   		
       	private static $serveur='mysql:host=localhost';
-      	private static $bdd='dbname=lafleur';   		
+      	private static $bdd='dbname=pharma';   		
       	private static $user='root' ;    		
       	private static $mdp='root' ;	
 		private static $monPdo;
@@ -53,13 +53,13 @@ class PdoLafleur
  *
  * @return le tableau associatif des catégories 
 */
-	public function getLesCategories()
+	/*public function getLesCategories()
 	{
 		$req = "select * from categorie";
 		$res = PdoLafleur::$monPdo->query($req);
 		$lesLignes = $res->fetchAll();
 		return $lesLignes;
-	}
+	}*/
 
 /**
  * Retourne sous forme d'un tableau associatif tous les produits de la
@@ -69,20 +69,20 @@ class PdoLafleur
  * @return un tableau associatif  
 */
 
-	public function getLesProduitsDeCategorie($idCategorie)
+	/*public function getLesProduitsDeCategorie($idCategorie)
 	{
 	    $req="select * from produit where idCategorie = '$idCategorie'";
 		$res = PdoLafleur::$monPdo->query($req);
 		$lesLignes = $res->fetchAll();
 		return $lesLignes; 
-	}
+	}*/
 /**
  * Retourne les produits concernés par le tableau des idProduits passée en argument
  *
  * @param $desIdProduit tableau d'idProduits
  * @return un tableau associatif 
 */
-	public function getLesProduitsDuTableau($desIdProduit)
+	/*public function getLesProduitsDuTableau($desIdProduit)
 	{
 		$nbProduits = count($desIdProduit);
 		$lesProduits=array();
@@ -111,7 +111,7 @@ class PdoLafleur
 			$LoginConfirmation=false;
 		}
 		return $LoginConfirmation;
-	}
+	}*/
 /**
  * Crée une commande 
  *
@@ -125,7 +125,7 @@ class PdoLafleur
  * @param $mail
  * @param $lesIdProduit
 */
-	public function creerCommande($nom,$rue,$cp,$ville, $lesIdProduit )
+	/*public function creerCommande($nom,$rue,$cp,$ville, $lesIdProduit )
 	{
 		$req = "select max(id) as maxi from commande";
 		echo $req."<br>";
@@ -147,7 +147,7 @@ class PdoLafleur
 			echo $req."<br>";
 			$res = PdoLafleur::$monPdo->exec($req);
 		}
-	}
+	}*/
 		
 
 	/*
@@ -158,7 +158,7 @@ class PdoLafleur
 	**
 	*
 	**/
-	public function addCategorie($nom)
+	/*public function addCategorie($nom)
 	{
 		$insert="insert into categorie (id,libelle) values ('".substr($nom, 0,3)."','".$nom."')";
 		$res=PdoLafleur::$monPdo->exec($insert);
@@ -210,7 +210,7 @@ class PdoLafleur
 		var_dump($insert);
 		return $res;
 	}
-
+*/
 
 
 
@@ -223,9 +223,9 @@ class PdoLafleur
 
 
 	//creation de compte client
-	public function createClient($login,$pwd)
+	public function createClient($login,$pwd,$nom,$adr,$cp)
 	{
-		$insert=("insert into client(login,mdp) values ('$login','$pwd') ");
+		$insert=("insert into userpharma (login,mdp,nom,adresse,code_postal) values ('$login','$pwd','$nom','$adr',$cp) ");
 		$res=PdoLafleur::$monPdo->exec($insert);
 		var_dump($insert);
 		return $res;
@@ -235,14 +235,14 @@ class PdoLafleur
 	public function checkClient($login,$pwd)
 	{
 
-		$req="select id,count(*) as nbr from client where login='".$login."' and mdp='".$pwd."'";
+		$req="select id,count(*) as nbr from userpharma where login='".$login."' and mdp='".$pwd."'";
 		$res = PdoLafleur::$monPdo->query($req);
 		$logged=$res->fetch();
 		
 		if($logged['nbr']==1)
 		{
 			$LoginConfirmation=true;
-			$_SESSION['idclient']=$logged['id'];
+			$_SESSION['id']=$logged['id'];
 		}else
 		{
 			$LoginConfirmation=false;
