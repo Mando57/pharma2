@@ -6,13 +6,14 @@ switch($action)
 {
 	case 'creer':
 	{
+		$lesProduits=$pdo->getProduit()->fetchAll();
 		if(!isset($_POST['co']))
 		{	
 			include('vues/v_creerReservation.php');
 			break;
 		}else
 		{
-			if($pdo->createDemande($_POST['date'],$_POST['debut'],$_POST['fin'],$_POST['remarque']) == false)
+			if($pdo->createDemande($_POST['date'],$_POST['debut'],$_POST['fin'],$_POST['remarque'],$_POST['produit']) == false)
 				{
 					$message = "La creation a échoué";
 					include ("vues/v_message.php");
@@ -24,10 +25,31 @@ switch($action)
 		}
 	}
 	
+	case 'delDemande':
+	{
+		if(isset($_POST['delete']))
+		{
+			if($pdo->delDemande($_POST['id']) == false)
+				{
+					$message = "La suppression a échoué";
+					include ("vues/v_message.php");
+					include('vues/v_allReservation.php');
+				}else{
+					$message = "La suppression a réussit";
+					include ("vues/v_message.php");
+				}
+
+		}
+		$lesDemandes=$pdo->getDemande()->fetchAll();
+		include('vues/v_allReservation.php');
+		break;
+	}
+
 	default:
 	{
-		/*include('vues/v_allReservation.php');
-		break;*/
+		$lesDemandes=$pdo->getDemande()->fetchAll();
+		include('vues/v_allReservation.php');
+		break;
 	}
 
 }

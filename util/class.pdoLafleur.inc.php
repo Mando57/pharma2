@@ -251,15 +251,38 @@ class PdoLafleur
 		return $LoginConfirmation;
 
 	}
-	public function createDemande($date,$debut,$fin,$remarque)
+	public function createDemande($date,$debut,$fin,$remarque,$prod)
 	{
 		@$date = date("Y-m-d", strtotime($date));
-		
+
 		$id=$_SESSION['id'];
 
-		$insert=("insert into demande (date,debut,fin,remarque,idPharma) values ('$date','$debut','$fin','$remarque',$id) ");
+		$insert=("insert into demande (date,debut,fin,remarque,idPharma,idProd) values ('$date','$debut','$fin','$remarque',$id,$prod) ");
 		$res=PdoLafleur::$monPdo->exec($insert);
 		var_dump($insert);
+
+		return $res;
+	}
+	public function getDemande()
+	{
+		$id=$_SESSION['id'];
+
+		$req="select * from demande where idPharma=$id ";
+		$res=PdoLafleur::$monPdo->query($req);
+
+		return $res;
+	}
+	public function delDemande($id)
+	{
+		$req="delete from demande where id=$id";
+		$res=PdoLafleur::$monPdo->exec($req);
+
+		return $res;
+	}
+	public function getProduit()
+	{
+		$req="select * from produit";
+		$res=PdoLafleur::$monPdo->query($req);
 
 		return $res;
 	}
