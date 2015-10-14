@@ -44,6 +44,26 @@ switch($action)
 		include('vues/v_allReservation.php');
 		break;
 	}
+	case 'contreOffre':
+	{
+		if(isset($_GET['id']))
+		{
+			$laDemande=$pdo->getDemandeById($_GET['id'])->fetch();
+			include("vues/v_contreOffre.php");
+		}
+		if(isset($_POST['valider']))
+		{
+			$pdo->accepterDemande($_POST['id']);
+
+		}elseif(isset($_POST['refuser']))
+		{
+			$pdo->refuserDemande($_POST['id']);
+		}
+
+		break;
+	}
+
+	
 
 	default:
 	{

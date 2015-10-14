@@ -17,13 +17,10 @@ switch($uc)
 		{include("vues/v_accueil.php");break;}
 	case 'reserv' :
 		{include("controleurs/c_reservation.php");break;}
-///// ajout du controle/////
 	 case 'connec':
 	 {
 	 	include("controleurs/c_connection.php");break;
 	 }
-/////fin d' ajout du controle/////
 }
 include("vues/v_pied.php") ;
 ?>
-

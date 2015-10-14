@@ -2,7 +2,7 @@
 <table border='1'>
 		<tr>
 			<td>
-				supprimmer
+				Action
 			</td>
 			<td >
 				date
@@ -36,7 +36,13 @@
 			<form method='post' action='index.php?uc=reserv&action=delDemande'>
 			<td>
 				<input type='hidden' name='id' value='<?php echo $demande['id'] ;?>'/>
+				<?php if(is_null($demande['idDemande']))
+				{?>
+					
 				<input type='submit' style='width:100px' name='delete' value='delete'/>
+			<?php }else{ ?>
+					<a href=index.php?uc=reserv&action=contreOffre&id=<?php echo $demande['id'] ;?> >Action</a>
+			<?php	 } ?>
 			</td>
 			<td>
 				<?php echo $demande['date']; ?>

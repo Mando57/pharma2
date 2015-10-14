@@ -268,9 +268,11 @@ class PdoLafleur
 		$id=$_SESSION['id'];
 
 		$req="select * from demande where idPharma=$id ";
+		var_dump($req);
 		$res=PdoLafleur::$monPdo->query($req);
 
 		return $res;
+		
 	}
 	public function delDemande($id)
 	{
@@ -286,6 +288,24 @@ class PdoLafleur
 
 		return $res;
 	}
-	
+	public function getDemandeByID($id)
+	{
+		$req="select * from demande where id=$id ";
+		$res=PdoLafleur::$monPdo->query($req);
+
+		return $res;
+	}
+	public function accepterDemande($id)
+	{
+		$upd="update demande set status='client ok' where id=$id";
+		$res=$res=PdoLafleur::$monPdo->exec($upd);
+		return $res;
+	}
+	public function refuserDemande($id)
+	{
+		$upd="update demande set status='client pas ok' where id=$id";
+		$res=$res=PdoLafleur::$monPdo->exec($upd);
+		return $res;
+	}
 }
 ?>

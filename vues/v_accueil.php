@@ -1,3 +1,3 @@
 <div id="accueil">
-Lafleur, le prince des fleurs sur internet
+La meilleur pharma de l'univers sur internet.
 </div>

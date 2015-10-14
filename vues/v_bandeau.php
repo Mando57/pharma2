@@ -1,7 +1,7 @@
 <div id="bandeau">
 <!-- Images En-tête -->
 <!--<img src="images/menuGauche.gif"	alt="Choisir" title="Choisir"/>-->
-<img src="images/lafleur.gif"	alt="Lafleur" title="Lafleur"/>
+<img src="images/logo.jpg"	alt="Lafleur" title="Lafleur"/>
 </div>
 <!--  Menu haut-->
 <ul id="menu">
